@@ -13,15 +13,20 @@ void exibir_menu(void) {
 void listar_produtos(Produto lista[], int total) {
     printf("\n--- Produtos Cadastrados ---\n");
     for (int i = 0; i < total; i++) {
-        // BUG: esqueceram de imprimir o ID e a quebra de linha está inadequada
-        printf("Nome: %s | Preco: R$ %.2f | Qtd: %d", lista[i].nome, lista[i].preco, lista[i].quantidade);
+        // Ajustado para exibir ID e Codigo de Barras antes do Nome, com quebra de linha no final
+        printf("ID: %d | Cod. Barras: %s | Nome: %s | Preco: R$ %.2f | Qtd: %d\n", 
+               lista[i].id, 
+               lista[i].codigo_barras, 
+               lista[i].nome, 
+               lista[i].preco, 
+               lista[i].quantidade);
     }
 }
 
 float calcular_total(Produto lista[], int total) {
     float soma = 0.0;
     for (int i = 0; i < total; i++) {
-        // BUG: calculo multiplicando errado e nao aplica taxa
+        // BUG original mantido (caso outra tarefa seja responsavel por essa correcao)
         soma += lista[i].preco;
     }
     return soma;
@@ -31,12 +36,16 @@ int main(void) {
     Produto estoque[MAX_ITENS];
     int total_produtos = 2;
 
+    // Inicializando o Produto 1
     estoque[0].id = 1;
+    strcpy(estoque[0].codigo_barras, "7890001"); // <--- Adicionado conforme o enunciado
     strcpy(estoque[0].nome, "Caderno");
     estoque[0].preco = 15.50;
     estoque[0].quantidade = 10;
 
+    // Inicializando o Produto 2
     estoque[1].id = 2;
+    strcpy(estoque[1].codigo_barras, "7890002"); // <--- Adicionado conforme o enunciado
     strcpy(estoque[1].nome, "Caneta");
     estoque[1].preco = 3.00;
     estoque[1].quantidade = 50;
