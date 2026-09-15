@@ -15,4 +15,8 @@ void exibir_menu(void);
 void listar_produtos(Produto lista[], int total);
 float calcular_total(Produto lista[], int total);
 
+#define TAXA_DESCONTO 0.05
+
+float aplicar_desconto(float total);
+
 #endif
